@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "framework": null,
+  "functions": {
+    "main/api/index.php": {
+      "runtime": "vercel-php@0.7.1"
+    }
+  },
+  "routes": [
+    {
+      "src": "/build/(.*)",
+      "dest": "/main/public/build/$1"
+    },
+    {
+      "src": "/storage/(.*)",
+      "dest": "/main/public/storage/$1"
+    },
+    {
+      "src": "/(favicon\\.ico|robots\\.txt|sitemap\\.xml)",
+      "dest": "/main/public/$1"
+    },
+    {
+      "src": "/(.*\\.(?:css|js|map|png|jpg|jpeg|gif|svg|webp|ico|txt|xml|woff|woff2|ttf|otf))",
+      "dest": "/main/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/main/api/index.php"
+    }
+  ]
+}
