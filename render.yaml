@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: koutnyin-mc
+    runtime: php
+    rootDir: main
+    buildCommand: bash ./render-build.sh
+    startCommand: php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_NAME
+        value: KoutNyinMC
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: DATABASE_URL
+        fromDatabase:
+          name: koutnyin-db
+          property: connectionString
+
+databases:
+  - name: koutnyin-db
+    databaseName: koutnyin
+    user: koutnyinuser
+    plan: free
